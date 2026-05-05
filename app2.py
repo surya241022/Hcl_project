@@ -2,13 +2,19 @@ import streamlit as st
 import pandas as pd
 from pymongo import MongoClient
 import plotly.express as px
+import os
+from dotenv import load_dotenv
+
+# Load .env file
+load_dotenv()
+
 
 # -------------------- PAGE CONFIG --------------------
 st.set_page_config(page_title="Credit Risk Dashboard", layout="wide")
 st.title("📊 Credit Risk Analysis Dashboard")
 
 # -------------------- MONGO CONNECTION --------------------
-connection_url = 'mongodb+srv://anakalasurya7_db_user:iQZTULVdCi1AyBZu@cluster0.i1aaffi.mongodb.net/?appName=Cluster0'
+connection_url = os.getenv("MONGO_URI")
 
 client = MongoClient(connection_url)
 db = client["Credit_Risk-2"]
